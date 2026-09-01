@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tree Photo Collection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- PARTICLE CANVAS -->
+    <canvas id="particles"></canvas>
+
+
+    <!-- MAIN SCENE -->
+    <main class="scene">
+
+
+        <!-- GLOWING GROUND -->
+        <div class="ground-glow"></div>
+
+
+        <!-- TREE -->
+        <div class="tree-wrapper">
+
+            <svg
+                class="tree"
+                viewBox="0 0 1000 900"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+
+                <defs>
+
+                    <!-- GOLDEN GRADIENT -->
+                    <linearGradient
+                        id="goldGradient"
+                        x1="0"
+                        y1="1"
+                        x2="0"
+                        y2="0"
+                    >
+
+                        <stop
+                            offset="0%"
+                            stop-color="#fff3c4"
+                        />
+
+                        <stop
+                            offset="45%"
+                            stop-color="#f6d681"
+                        />
+
+                        <stop
+                            offset="100%"
+                            stop-color="#d9a94d"
+                        />
+
+                    </linearGradient>
+
+
+                    <!-- SOFT GLOW -->
+                    <filter
+                        id="softGlow"
+                        x="-50%"
+                        y="-50%"
+                        width="200%"
+                        height="200%"
+                    >
+
+                        <feGaussianBlur
+                            stdDeviation="5"
+                            result="blur"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode
+                                in="blur"
+                            />
+
+                            <feMergeNode
+                                in="SourceGraphic"
+                            />
+
+                        </feMerge>
+
+                    </filter>
+
+
+                    <!-- STRONG GLOW -->
+                    <filter
+                        id="strongGlow"
+                        x="-80%"
+                        y="-80%"
+                        width="260%"
+                        height="260%"
+                    >
+
+                        <feGaussianBlur
+                            stdDeviation="10"
+                            result="blur1"
+                        />
+
+                        <feGaussianBlur
+                            stdDeviation="3"
+                            result="blur2"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode
+                                in="blur1"
+                            />
+
+                            <feMergeNode
+                                in="blur2"
+                            />
+
+                            <feMergeNode
+                                in="SourceGraphic"
+                            />
+
+                        </feMerge>
+
+                    </filter>
+
+                </defs>
+
+
+                <!-- =====================================
+                     ROOTS
+                ====================================== -->
+
+                <g class="tree-part roots">
+
+                    <path
+                        class="tree-line root-line"
+                        d="
+                        M500 820
+                        C470 845 420 850 350 870
+                        "
+                    />
+
+                    <path
+                        class="tree-line root-line"
+                        d="
+                        M500 820
+                        C450 855 400 875 300 880
+                        "
+                    />
+
+                    <path
+                        class="tree-line root-line"
+                        d="
+                        M500 820
+                        C530 850 600 860 680 875
+                        "
+                    />
+
+                    <path
+                        class="tree-line root-line"
+                        d="
+                        M500 820
+                        C570 850 650 875 760 880
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M470 830
+                        C430 850 390 850 340 850
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M530 830
+                        C580 850 640 850 700 850
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     MAIN TRUNK
+                ====================================== -->
+
+                <g class="tree-part trunk-group">
+
+                    <path
+                        class="tree-line trunk-line"
+                        d="
+                        M500 825
+                        C470 760 475 700 495 640
+                        C520 570 475 520 490 450
+                        C505 390 515 330 500 260
+                        "
+                    />
+
+                    <path
+                        class="tree-line inner-trunk"
+                        d="
+                        M490 820
+                        C505 750 515 700 500 635
+                        C485 570 510 500 500 430
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M515 810
+                        C540 740 535 690 520 630
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     LEFT MAIN BRANCH
+                ====================================== -->
+
+                <g class="tree-part branch-left">
+
+                    <path
+                        class="tree-line branch-line"
+                        d="
+                        M495 640
+                        C430 610 390 570 340 520
+                        C285 465 215 435 150 380
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M380 560
+                        C330 525 290 485 245 430
+                        C215 395 185 350 155 295
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M300 485
+                        C255 475 205 455 160 420
+                        C125 395 105 365 90 330
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M245 430
+                        C205 425 165 400 130 365
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M225 405
+                        C190 370 175 330 170 285
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M180 390
+                        C140 370 115 345 85 310
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     RIGHT MAIN BRANCH
+                ====================================== -->
+
+                <g class="tree-part branch-right">
+
+                    <path
+                        class="tree-line branch-line"
+                        d="
+                        M505 640
+                        C570 610 620 570 675 520
+                        C735 470 805 430 860 370
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M625 565
+                        C675 525 720 480 755 425
+                        C785 380 810 330 835 280
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M700 485
+                        C750 470 800 445 845 405
+                        C875 380 895 345 910 310
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M750 430
+                        C790 415 830 390 865 355
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M780 405
+                        C810 365 825 325 830 280
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M820 390
+                        C860 365 885 335 915 300
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     UPPER LEFT BRANCHES
+                ====================================== -->
+
+                <g class="tree-part upper-left">
+
+                    <path
+                        class="tree-line branch-line"
+                        d="
+                        M495 500
+                        C440 455 405 400 370 345
+                        C335 290 290 240 230 190
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M400 400
+                        C360 370 320 330 300 280
+                        C280 230 250 190 205 145
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M330 335
+                        C290 310 250 280 225 240
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M280 285
+                        C245 250 220 210 205 170
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     UPPER RIGHT BRANCHES
+                ====================================== -->
+
+                <g class="tree-part upper-right">
+
+                    <path
+                        class="tree-line branch-line"
+                        d="
+                        M505 500
+                        C560 450 595 400 630 340
+                        C665 285 710 230 770 180
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M600 400
+                        C640 365 680 325 705 275
+                        C725 225 755 185 800 140
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M670 330
+                        C710 300 750 265 775 225
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M720 280
+                        C755 245 780 205 795 165
+                        "
+                    />
+
+                </g>
+
+
+                <!-- =====================================
+                     TOP CROWN
+                ====================================== -->
+
+                <g class="tree-part top-crown">
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M500 350
+                        C465 300 450 250 455 195
+                        C460 140 440 100 400 65
+                        "
+                    />
+
+                    <path
+                        class="tree-line medium-line"
+                        d="
+                        M500 350
+                        C535 300 550 250 545 195
+                        C540 140 560 100 600 65
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M465 250
+                        C430 220 400 190 375 150
+                        "
+                    />
+
+                    <path
+                        class="tree-line thin-line"
+                        d="
+                        M535 250
+                        C570 220 600 190 625 150
+                        "
+                    />
+
+                </g>
+
+            </svg>
+
+        </div>
+
+
+        <!-- =====================================
+             PHOTO MEMORY FRAMES
+        ====================================== -->
+
+        <div class="photo cousin1">
+            <img src="assets/images/cousin1.jpg" alt="Cousin 1">
+        </div>
+
+        <div class="photo cousin2">
+            <img src="assets/images/cousin2.jpg" alt="Cousin 2">
+        </div>
+
+        <div class="photo cousin3">
+            <img src="assets/images/cousin3.jpg" alt="Cousin 3">
+        </div>
+
+        <div class="photo cousin4">
+            <img src="assets/images/cousin4.jpg" alt="Cousin 4">
+        </div>
+
+        <div class="photo cousin5">
+            <img src="assets/images/cousin5.jpg" alt="Cousin 5">
+        </div>
+
+        <div class="photo cousin6">
+            <img src="assets/images/cousin6.jpg" alt="Cousin 6">
+        </div>
+
+        <div class="photo cousin7">
+            <img src="assets/images/cousin7.jpg" alt="Cousin 7">
+        </div>
+
+
+        <!-- QUOTE -->
+
+        <div class="quote">
+
+            <h1>Cousins</h1>
+
+            <p>
+                Connected by heart,<br>
+                no distance and time<br>
+                can break us apart.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- MUSIC -->
+
+    <audio
+        id="background-music"
+        loop
+    >
+        <source
+            src="assets/music/background.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <!-- MUSIC BUTTON -->
+
+    <button
+        id="music-button"
+        aria-label="Play or Pause Music"
+    >
+        ▶
+    </button>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

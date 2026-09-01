@@ -1,0 +1,591 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    background: #020204;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================================
+   PARTICLE CANVAS
+========================================= */
+
+#particles {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   MAIN SCENE
+========================================= */
+
+.scene {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   GROUND
+========================================= */
+
+.ground-glow {
+    position: absolute;
+
+    left: 0;
+    bottom: 8%;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 210, 120, 0.2),
+            rgba(255, 225, 160, 0.9),
+            rgba(255, 210, 120, 0.2),
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px rgba(255, 220, 140, 0.8),
+        0 0 30px rgba(255, 190, 90, 0.4),
+        0 0 70px rgba(255, 180, 70, 0.2);
+
+    opacity: 0;
+
+    animation:
+        groundAppear 2s ease forwards;
+
+    animation-delay: 2s;
+}
+
+
+/* =========================================
+   TREE WRAPPER
+========================================= */
+
+.tree-wrapper {
+    position: absolute;
+
+    width: min(85vw, 900px);
+
+    height: min(85vh, 820px);
+
+    left: 50%;
+    bottom: 5%;
+
+    transform:
+        translateX(-50%);
+
+    transform-origin:
+        center bottom;
+
+    opacity: 0;
+
+    animation:
+        treeAppear 1s ease forwards,
+        treeWind 6s ease-in-out infinite;
+
+    animation-delay:
+        3s,
+        10s;
+}
+
+
+.tree {
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* =========================================
+   TREE PATHS
+========================================= */
+
+.tree-line {
+    fill: none;
+
+    stroke:
+        url(#goldGradient);
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        url(#softGlow);
+
+    stroke-dasharray: 2000;
+
+    stroke-dashoffset: 2000;
+
+    animation:
+        drawTree 2.8s ease forwards;
+}
+
+
+/* ROOTS */
+
+.root-line {
+    stroke-width: 7;
+
+    animation-delay: 3.5s;
+}
+
+
+/* MAIN TRUNK */
+
+.trunk-line {
+    stroke-width: 30;
+
+    animation-delay: 4s;
+}
+
+
+.inner-trunk {
+    stroke-width: 8;
+
+    stroke: #fff1bd;
+
+    animation-delay: 4.4s;
+}
+
+
+/* MAIN BRANCHES */
+
+.branch-line {
+    stroke-width: 16;
+
+    animation-delay: 5.5s;
+}
+
+
+.medium-line {
+    stroke-width: 9;
+
+    animation-delay: 6.5s;
+}
+
+
+.thin-line {
+    stroke-width: 4;
+
+    animation-delay: 7.5s;
+}
+
+
+/* Different branch timing */
+
+.branch-left {
+    animation-delay: 0s;
+}
+
+
+.branch-right {
+    animation-delay: 0.5s;
+}
+
+
+.upper-left {
+    animation-delay: 1s;
+}
+
+
+.upper-right {
+    animation-delay: 1.4s;
+}
+
+
+/* =========================================
+   PHOTO FRAMES
+========================================= */
+
+.photo {
+    position: absolute;
+
+    width: clamp(75px, 9vw, 125px);
+    height: clamp(95px, 12vw, 155px);
+
+    padding: 5px;
+
+    background:
+        rgba(255, 230, 170, 0.06);
+
+    border:
+        2px solid rgba(255, 224, 155, 0.95);
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 0 10px rgba(255, 220, 140, 0.8),
+        0 0 30px rgba(255, 190, 90, 0.4),
+        inset 0 0 15px rgba(255, 235, 180, 0.15);
+
+    opacity: 0;
+
+    transform:
+        scale(0.3)
+        translateY(20px);
+
+    z-index: 6;
+}
+
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================
+   PHOTO POSITIONS
+========================================= */
+
+.cousin1 {
+    left: 18%;
+    top: 22%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 11s;
+}
+
+
+.cousin2 {
+    left: 37%;
+    top: 8%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 11.7s;
+}
+
+
+.cousin3 {
+    right: 18%;
+    top: 22%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 12.4s;
+}
+
+
+.cousin4 {
+    left: 10%;
+    top: 48%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 13.1s;
+}
+
+
+.cousin5 {
+    left: 45%;
+    top: 36%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 13.8s;
+}
+
+
+.cousin6 {
+    right: 10%;
+    top: 48%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 14.5s;
+}
+
+
+.cousin7 {
+    left: 38%;
+    bottom: 14%;
+
+    animation:
+        photoAppear 1.2s ease forwards;
+
+    animation-delay: 15.2s;
+}
+
+
+/* =========================================
+   QUOTE
+========================================= */
+
+.quote {
+    position: absolute;
+
+    right: 7%;
+    bottom: 15%;
+
+    color: #f8e5b7;
+
+    text-align: center;
+
+    z-index: 7;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        quoteAppear 2s ease forwards;
+
+    animation-delay: 16s;
+
+    text-shadow:
+        0 0 15px rgba(255, 220, 150, 0.5);
+}
+
+
+.quote h1 {
+    font-family: cursive;
+
+    font-size:
+        clamp(1.8rem, 3vw, 3rem);
+
+    margin-bottom: 10px;
+}
+
+
+.quote p {
+    font-size:
+        clamp(0.8rem, 1.4vw, 1.15rem);
+
+    line-height: 1.7;
+
+    color:
+        rgba(255, 235, 195, 0.85);
+}
+
+
+/* =========================================
+   MUSIC BUTTON
+========================================= */
+
+#music-button {
+    position: fixed;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform:
+        translateX(-50%);
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid #f5d98a;
+
+    background:
+        rgba(10, 10, 15, 0.85);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    box-shadow:
+        0 0 20px rgba(255, 210, 120, 0.5);
+
+    transition: 0.3s;
+}
+
+
+#music-button:hover {
+    transform:
+        translateX(-50%)
+        scale(1.12);
+
+    box-shadow:
+        0 0 35px rgba(255, 220, 150, 0.9);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes groundAppear {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes treeAppear {
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes drawTree {
+
+    to {
+        stroke-dashoffset: 0;
+    }
+
+}
+
+
+/* Gentle wind */
+
+@keyframes treeWind {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(-0.7deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(0.7deg);
+    }
+
+}
+
+
+/* Photos */
+
+@keyframes photoAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.3)
+            translateY(25px);
+    }
+
+    65% {
+        opacity: 1;
+
+        transform:
+            scale(1.08)
+            translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+/* Quote */
+
+@keyframes quoteAppear {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .tree-wrapper {
+        width: 125vw;
+        height: 75vh;
+
+        bottom: 8%;
+    }
+
+
+    .quote {
+        display: none;
+    }
+
+
+    .cousin1 {
+        left: 8%;
+    }
+
+    .cousin3 {
+        right: 8%;
+    }
+
+    .cousin4 {
+        left: 3%;
+    }
+
+    .cousin6 {
+        right: 3%;
+    }
+
+}
