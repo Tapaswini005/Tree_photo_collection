@@ -1,0 +1,17 @@
+# VS Code
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Python cache (if accidentally created)
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
