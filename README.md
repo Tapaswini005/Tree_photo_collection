@@ -42,6 +42,7 @@ Open the project folder in VS Code and use the **Live Server** extension:
 1. Install Live Server from the VS Code Extensions view.
 2. Right-click `index.html`.
 3. Select **Open with Live Server**.
+4. You will see the ui then
 
 The project can also be served by any local static web server. Opening `index.html` directly works for the page, but a local server is recommended for reliable media loading.
 
